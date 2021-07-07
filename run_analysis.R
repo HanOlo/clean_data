@@ -50,12 +50,8 @@ comb_names <- names(combined_df)
 comb_names_keep <- str_detect(comb_names, "Subject|Activity|data_source|mean|std")
 part2_df <- combined_df[,comb_names_keep]
 
-
-
 ## PART 3 - Use descriptive activity names for activities in the data set
 #
-
-
 
 part3_df <- part2_df %>% 
   mutate(Activity = recode_factor(Activity, 
@@ -65,8 +61,6 @@ part3_df <- part2_df %>%
                                   `4` = "SITTING",
                                   `5` = "STANDING",
                                   `6` = "LAYING"))
-
-
 
 
 ## Part 4 - Label the data set with descriptive variable names
@@ -89,10 +83,10 @@ part4_df <- part3_df # copies dataframe from part 2 to part3_df
 colnames(part4_df) <- new_names_keep # applies new names to colmn names
 
 
-
 ## Part 5 - Create a data set with the average for each variable for each activity and each subject
 #
 
 part5_df <- part4_df %>% 
   group_by(activity, subject) %>% 
   summarize(across(where(is.numeric), mean, .names = "mean_{.col}"))
+
