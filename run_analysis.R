@@ -90,3 +90,4 @@ part5_df <- part4_df %>%
   group_by(activity, subject) %>% 
   summarize(across(where(is.numeric), mean, .names = "mean_{.col}"))
 
+write.table(part5_df, "part5.txt", row.names = FALSE)
